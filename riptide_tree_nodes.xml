@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<root>
+  <TreeNodesModel>
+    
+    <!-- ############################### CONTROL NODES ################################ -->
+    <Control ID="RecoveryNode">
+        <input_port name="number_of_retries">Number of retries</input_port>
+    </Control>
+    <Control ID="SaySomething">
+      <input_port name="message">Message to be displayed</input_port>
+    </Control>
+
+    <!-- ############################### CONDITION NODES ############################## -->
+    <Condition ID="IsBatteryLowerThan">
+        <input_port name="min_battery">Min battery voltage before triggering</input_port>
+        <input_port name="battery_topic">Topic for battery info</input_port>
+    </Condition>
+
+    <Condition ID="IsPressureGreaterThan">
+        <input_port name="min_pressure">Min pressure before triggering</input_port>
+        <input_port name="pressure_topic">Topic for pressure info</input_port>
+    </Condition>
+
+    <!-- ############################### DECORATOR NODES ################################ -->
+    <Control ID="Inverter"/>
+
+  </TreeNodesModel>
+</root>

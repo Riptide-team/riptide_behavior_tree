@@ -1,0 +1,17 @@
+<root main_tree_to_execute="MainTree">
+    <BehaviorTree ID="MainTree">
+        <ReactiveFallback>
+            <SubTree ID="Mission" node="node"/>
+            <SaySomething message="Low Battery"/>
+        </ReactiveFallback>
+    </BehaviorTree>
+
+    <BehaviorTree ID="Mission">
+        <PipelineSequence>
+            <Inverter>
+                <IsBatteryLowerThan min_battery="10" battery_topic="/battery_status"/>
+            </Inverter>
+            <SaySomething message="Enough battery"/>
+        </PipelineSequence>
+    </BehaviorTree>
+</root>
