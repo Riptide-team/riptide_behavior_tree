@@ -12,6 +12,7 @@
                 <IsBatteryLowerThan min_battery="10" battery_topic="/battery_status"/>
             </Inverter>
             <SaySomething message="Enough battery"/>
+            <LoadController controller_manager="/controller_manager" controller_name=""/>
         </PipelineSequence>
     </BehaviorTree>
 </root>

@@ -21,6 +21,7 @@ find_package(std_msgs REQUIRED)
 find_package(std_srvs REQUIRED)
 find_package(nav2_util REQUIRED)
 find_package(riptide_msgs REQUIRED)
+find_package(controller_manager_msgs REQUIRED)
 
 nav2_package()
 
@@ -43,6 +44,7 @@ set(dependencies
   std_srvs
   nav2_util
   riptide_msgs
+  controller_manager_msgs
 )
 
 # Behavior tree engine
@@ -69,6 +71,10 @@ list(APPEND plugin_libs is_pressure_greater_than)
 # Decorator
 add_library(inverter_node SHARED plugins/decorator/inverter_node.cpp)
 list(APPEND plugin_libs inverter_node)
+
+# Service
+add_library(load_controller SHARED plugins/service/load_controller.cpp)
+list(APPEND plugin_libs load_controller)
 
 # Adding dependencies
 foreach(bt_plugin ${plugin_libs})
