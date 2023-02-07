@@ -54,6 +54,10 @@ ament_target_dependencies(${library_name}
   ${dependencies}
 )
 
+# Action
+add_library(depth_action SHARED plugins/action/depth_action.cpp)
+list(APPEND plugin_libs depth_action)
+
 # Control
 add_library(recovery_node SHARED plugins/control/recovery_node.cpp)
 list(APPEND plugin_libs recovery_node)

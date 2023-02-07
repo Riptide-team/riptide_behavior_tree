@@ -9,9 +9,9 @@
     <BehaviorTree ID="Mission">
         <ReactiveSequence>
             <Inverter>
-                <IsPressureGreaterThan min_pressure="3000" pressure_topic="/pressure_status"/>
+                <IsPressureGreaterThan min_pressure="2500" pressure_topic="/pressure_status"/>
             </Inverter>
-            <IsPressureGreaterThan min_pressure="1080" pressure_topic="/pressure_status"/>
+            <IsPressureGreaterThan min_pressure="1060" pressure_topic="/pressure_status"/>
             <Sequence>
                 <Delay delay_msec="5000">
                     <SaySomething message="Call depth=1m"/>
