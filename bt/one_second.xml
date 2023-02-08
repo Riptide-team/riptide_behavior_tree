@@ -14,10 +14,10 @@
             <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
             <Sequence>
                 <Delay delay_msec="5000">
-                    <SaySomething message="Call depth=1m"/>
+                    <DepthAction depth="1"/>
                 </Delay>
                 <Delay delay_msec="5000">
-                    <SaySomething message="Call depth=0m"/>
+                    <DepthAction depth="0"/>
                 </Delay>
             </Sequence>
         </ReactiveSequence>

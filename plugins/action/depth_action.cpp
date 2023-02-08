@@ -39,5 +39,5 @@ BT_REGISTER_NODES(factory) {
         return std::make_unique<riptide_behavior_tree::DepthAction>(name, "depth", config);
         };
 
-    factory.registerBuilder<riptide_behavior_tree::DepthAction>("Depth", builder);
+    factory.registerBuilder<riptide_behavior_tree::DepthAction>("DepthAction", builder);
 }
