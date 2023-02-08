@@ -14,10 +14,10 @@
             <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
             <Sequence>
                 <Delay delay_msec="5000">
-                    <DepthAction depth="1"/>
+                    <DepthAction depth="1" action_name="/riptide_1/depth_controller/depth"/>
                 </Delay>
                 <Delay delay_msec="5000">
-                    <DepthAction depth="0"/>
+                    <DepthAction depth="0" action_name="/riptide_1/depth_controller/depth"/>
                 </Delay>
             </Sequence>
         </ReactiveSequence>
