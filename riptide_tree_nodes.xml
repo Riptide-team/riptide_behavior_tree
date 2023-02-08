@@ -1,6 +1,11 @@
 <?xml version="1.0"?>
 <root>
   <TreeNodesModel>
+
+    <!-- Action -->
+    <Action ID="DepthAction">
+      <input_port name="depth">Requested depthe</input_port>
+    </Action>
     
     <!-- ############################### CONTROL NODES ################################ -->
     <Control ID="RecoveryNode">
