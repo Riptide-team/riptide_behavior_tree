@@ -2,7 +2,7 @@
     <BehaviorTree ID="MainTree">
         <ReactiveFallback>
             <SubTree ID="Mission" node="node" bt_loop_duration="bt_loop_duration" server_timeout="server_timeout"/>
-            <DepthAction depth="0"/>
+            <DepthAction depth="0" server_name="/riptide_1/depth"/>
         </ReactiveFallback>
     </BehaviorTree>
 
@@ -14,10 +14,10 @@
             <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
             <Sequence>
                 <Delay delay_msec="1000">
-                    <DepthAction depth="1"/>
+                    <DepthAction depth="1" server_name="/riptide_1/depth"/>
                 </Delay>
                 <Delay delay_msec="1000">
-                    <DepthAction depth="0"/>
+                    <DepthAction depth="0" server_name="/riptide_1/depth"/>
                 </Delay>
             </Sequence>
         </ReactiveSequence>
