@@ -2,7 +2,6 @@
     <BehaviorTree ID="MainTree">
         <ReactiveFallback>
             <SubTree ID="Mission" node="node" bt_loop_duration="bt_loop_duration" server_timeout="server_timeout"/>
-            <DepthAction depth="0" server_name="/riptide_1/depth"/>
             <UnloadController controller_name="depth_controller" controller_manager="/riptide_1/controller_manager" />
         </ReactiveFallback>
     </BehaviorTree>
