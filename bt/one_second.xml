@@ -2,26 +2,28 @@
     <BehaviorTree ID="MainTree">
         <ReactiveFallback>
             <SubTree ID="Mission" node="node" bt_loop_duration="bt_loop_duration" server_timeout="server_timeout"/>
-            <SaySomething message="Stop"/>
+            <DepthAction depth="0"/>
         </ReactiveFallback>
     </BehaviorTree>
 
     <BehaviorTree ID="Mission">
-        <ReactiveSequence>
-            <Inverter>
-                <IsPressureGreaterThan min_pressure="2500" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
-            </Inverter>
-            <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
-            <Sequence>
-                <LoadController controller_manager="/riptide_1/controller_manager" controller_name="pressure_broadcaster"/>
-                <LoadController controller_manager="/riptide_1/controller_manager" controller_name="depth_controller"/>
-                <Delay delay_msec="1000">
-                    <DepthAction depth="1"/>
-                </Delay>
-                <Delay delay_msec="1000">
-                    <DepthAction depth="0"/>
-                </Delay>
-            </Sequence>
-        </ReactiveSequence>
+        <Sequence>
+            <LoadController controller_manager="/riptide_1/controller_manager" controller_name="pressure_broadcaster"/>
+            <LoadController controller_manager="/riptide_1/controller_manager" controller_name="depth_controller"/>
+            <ReactiveSequence>
+                <Inverter>
+                    <IsPressureGreaterThan min_pressure="2500" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+                </Inverter>
+                <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+                <Sequence>
+                    <Delay delay_msec="1000">
+                        <DepthAction depth="1"/>
+                    </Delay>
+                    <Delay delay_msec="1000">
+                        <DepthAction depth="0"/>
+                    </Delay>
+                </Sequence>
+            </ReactiveSequence>
+        </Sequence>
     </BehaviorTree>
 </root>
