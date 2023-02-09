@@ -1,0 +1,33 @@
+<root main_tree_to_execute="MainTree">
+    <BehaviorTree ID="MainTree">
+        <SetBlackboard output_key="executed" value="false" />
+        <WhileDoElse>
+            <!-- While -->
+            <Sequence>
+                <Inverter>
+                    <IsPressureGreaterThan min_pressure="3000" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+                </Inverter>
+                <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+            </Sequence>
+            
+            <!-- Do -->
+            <Fallback>
+                <BlackboardCheckInt value_A="{executed}" value_B="true" return_on_mismatch="FAILURE">
+                    <Sequence>
+                        <SetBlackboard output_key="executed" value="true" />
+                        <Sequence>
+                            <DepthAction depth="1" server_name="/riptide_1/depth"/>
+                            <Delay delay_msec="1000">
+                                <DepthAction depth="0" server_name="/riptide_1/depth"/>
+                            </Delay>
+                        </Sequence>
+                    </Sequence>
+                </BlackboardCheckInt>
+                <DepthAction depth="0" server_name="/riptide_1/depth"/>
+            </Fallback>
+            
+            <!-- Else -->
+            <UnloadController controller_name="depth_controller" controller_manager="/riptide_1/controller_manager" />
+        </WhileDoElse>
+    </BehaviorTree>
+</root>
