@@ -1,21 +1,25 @@
 <root main_tree_to_execute="MainTree">
     <BehaviorTree ID="MainTree">
         <ReactiveFallback>
-            <ReactiveSequence>
-                <Inverter>
-                    <IsPressureGreaterThan min_pressure="2500" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
-                </Inverter>
-                <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
-                <Sequence>
-                    <Delay delay_msec="5000">
-                        <DepthAction depth="1"/>
-                    </Delay>
-                    <Delay delay_msec="5000">
-                        <DepthAction depth="0"/>
-                    </Delay>
-                </Sequence>
-            </ReactiveSequence>
+            <SubTree ID="Mission" node="node" bt_loop_duration="bt_loop_duration" server_timeout="server_timeout"/>
             <SaySomething message="Stop"/>
         </ReactiveFallback>
+    </BehaviorTree>
+
+    <BehaviorTree ID="Mission">
+        <ReactiveSequence>
+            <Inverter>
+                <IsPressureGreaterThan min_pressure="2500" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+            </Inverter>
+            <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+            <Sequence>
+                <Delay delay_msec="5000">
+                    <DepthAction depth="1"/>
+                </Delay>
+                <Delay delay_msec="5000">
+                    <DepthAction depth="0"/>
+                </Delay>
+            </Sequence>
+        </ReactiveSequence>
     </BehaviorTree>
 </root>

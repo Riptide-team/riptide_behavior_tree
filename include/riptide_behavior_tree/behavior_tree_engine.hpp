@@ -27,6 +27,7 @@ namespace riptide_behavior_tree {
             /// ROS Parameters
             std::string bt_file_path_;
             std::chrono::milliseconds loop_timeout_{};
+            std::chrono::milliseconds bt_loop_duration_{};
             std::vector<std::string> plugins_;
             // Groot
             bool run_groot_monitoring_{};

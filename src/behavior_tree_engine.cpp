@@ -1,5 +1,6 @@
 #include "riptide_behavior_tree/behavior_tree_engine.hpp"
 
+#include <chrono>
 #include <memory>
 #include <string>
 #include <vector>
@@ -23,6 +24,7 @@ namespace riptide_behavior_tree {
     void BehaviorTreeEngine::configure_parameters() {
         bt_file_path_ = this->declare_parameter("bt_file_path", "tree.xml");
         loop_timeout_ = std::chrono::milliseconds(this->declare_parameter("loop_timeout", 100));
+        bt_loop_duration_ = std::chrono::milliseconds(this->declare_parameter("bt_loop_duration", 50));
         plugins_ = this->declare_parameter("plugins", std::vector<std::string>());
         // Groot
         run_groot_monitoring_ = this->declare_parameter("run_groot_monitoring", true);
@@ -34,6 +36,8 @@ namespace riptide_behavior_tree {
     void BehaviorTreeEngine::load_tree() {
         auto blackboard = BT::Blackboard::create();
         blackboard->set<rclcpp::Node::SharedPtr>("node", std::make_shared<rclcpp::Node>("bt_node"));
+        blackboard->set<std::chrono::milliseconds>("server_timeout", loop_timeout_);  // NOLINT 
+        blackboard->set<std::chrono::milliseconds>("bt_loop_duration", bt_loop_duration_);
         //  blackboard->set<std::shared_ptr<tf2_ros::Buffer>>("tf_buffer", tf_);
         RCLCPP_INFO(this->get_logger(), "Loading tree from file: %s", bt_file_path_.c_str());
         tree_ = std::make_shared<BT::Tree>(factory_.createTreeFromFile(bt_file_path_, blackboard));
