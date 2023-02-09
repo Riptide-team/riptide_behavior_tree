@@ -3,15 +3,17 @@
         <ReactiveFallback>
             <SubTree ID="Mission" node="node" bt_loop_duration="bt_loop_duration" server_timeout="server_timeout"/>
             <DepthAction depth="0" server_name="/riptide_1/depth"/>
+            <UnloadController controller_name="depth_controller" controller_manager="/riptide_1/controller_manager" />
         </ReactiveFallback>
     </BehaviorTree>
-
+    
     <BehaviorTree ID="Mission">
         <ReactiveSequence>
             <Inverter>
                 <IsPressureGreaterThan min_pressure="2500" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
             </Inverter>
             <IsPressureGreaterThan min_pressure="1060" pressure_topic="/riptide_1/pressure_broadcaster/pressure_status"/>
+            <LoadController controller_name="depth_controller" controller_manager="/riptide_1/controller_manager" />
             <Sequence>
                 <Delay delay_msec="1000">
                     <DepthAction depth="1" server_name="/riptide_1/depth"/>
