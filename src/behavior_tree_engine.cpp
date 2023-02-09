@@ -23,7 +23,7 @@ namespace riptide_behavior_tree {
 
     void BehaviorTreeEngine::configure_parameters() {
         bt_file_path_ = this->declare_parameter("bt_file_path", "tree.xml");
-        loop_timeout_ = std::chrono::milliseconds(this->declare_parameter("loop_timeout", 100));
+        loop_timeout_ = std::chrono::milliseconds(this->declare_parameter("loop_timeout", 1000));
         bt_loop_duration_ = std::chrono::milliseconds(this->declare_parameter("bt_loop_duration", 50));
         plugins_ = this->declare_parameter("plugins", std::vector<std::string>());
         // Groot
