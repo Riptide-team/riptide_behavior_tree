@@ -80,6 +80,9 @@ list(APPEND plugin_libs inverter_node)
 add_library(load_controller SHARED plugins/service/load_controller.cpp)
 list(APPEND plugin_libs load_controller)
 
+add_library(unload_controller SHARED plugins/service/unload_controller.cpp)
+list(APPEND plugin_libs unload_controller)
+
 # Adding dependencies
 foreach(bt_plugin ${plugin_libs})
   ament_target_dependencies(${bt_plugin} ${dependencies})

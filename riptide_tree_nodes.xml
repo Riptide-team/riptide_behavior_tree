@@ -2,9 +2,19 @@
 <root>
   <TreeNodesModel>
 
-    <!-- Action -->
+    <!-- ############################### ACTION NODES ################################ -->
     <Action ID="DepthAction">
         <input_port name="depth">Requested depth</input_port>
+    </Action>
+
+    <Action ID="LoadController">
+        <input_port name="controller_manager">Controller manager name</input_port>
+        <input_port name="controller_name">Controller name</input_port>
+    </Action>
+
+    <Action ID="UnloadController">
+      <input_port name="controller_manager">Controller manager name</input_port>
+      <input_port name="controller_name">Controller name</input_port>
     </Action>
     
     <!-- ############################### CONTROL NODES ################################ -->
