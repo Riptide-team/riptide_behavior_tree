@@ -21,7 +21,7 @@ namespace riptide_behavior_tree {
             depth *= -1;
         }
 
-        goal_.requested_depth = depth;
+        goal_.depth = depth;
     }
 
     void DepthAction::on_tick() {
